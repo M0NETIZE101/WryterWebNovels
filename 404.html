@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Not found — Wryter</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&family=Lora:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="/" class="wordmark">Wryter<span class="dot">.</span></a>
+    <nav class="nav">
+      <a href="/">← All stories</a>
+      <button class="icon-btn" id="theme-toggle" aria-label="Toggle theme">☾</button>
+    </nav>
+  </div>
+</header>
+
+<main class="section" style="min-height:60vh;display:grid;place-items:center;text-align:center">
+  <div class="wrap">
+    <p style="color:var(--indigo);font-family:var(--font-display);font-size:15px;
+              letter-spacing:.1em;text-transform:uppercase;margin:0 0 12px">
+      404
+    </p>
+    <h1 style="font-family:var(--font-display);font-size:clamp(32px,6vw,52px);
+               letter-spacing:-.02em;margin:0 0 16px">
+      This page doesn't exist
+    </h1>
+    <p style="color:var(--text-muted);max-width:44ch;margin:0 auto 28px">
+      The page you're looking for may have moved, or the link might be broken.
+    </p>
+    <a href="/" class="btn">← Back to stories</a>
+  </div>
+</main>
+
+<script type="module">
+  import { initTheme } from './theme.js';
+  initTheme();
+</script>
+</body>
+</html>
