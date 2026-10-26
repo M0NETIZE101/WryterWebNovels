@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Wryter — Stories by Wryter</title>
+  <meta name="description" content="Original fiction and fanfiction by Wryter." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&family=Lora:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="/" class="wordmark">Wryter<span class="dot">.</span></a>
+    <nav class="nav">
+      <a href="/">Stories</a>
+      <a href="#about">About</a>
+      <button class="icon-btn" id="theme-toggle" aria-label="Toggle theme">☾</button>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <h1>Stories that open other worlds.</h1>
+    <p>Original fiction and fanfiction by Wryter — updated chapter by chapter.</p>
+    <a href="#stories" class="btn">Start reading</a>
+  </div>
+</section>
+
+<section class="section" id="stories">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>All stories</h2>
+      <span class="meta" id="story-count"></span>
+    </div>
+    <div class="grid" id="story-grid">
+      <div class="skel cover"></div><div class="skel cover"></div><div class="skel cover"></div>
+      <div class="skel cover"></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="about">
+  <div class="wrap">
+    <div class="section-head"><h2>About Wryter</h2></div>
+    <p style="max-width:60ch;color:var(--text-muted)">
+      Wryter writes serialized fiction — superheroes, second chances, and worlds
+      that don't exist yet. New chapters drop regularly. Read free, no account required.
+    </p>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span>© <span id="year"></span> Wryter</span>
+    <span>Built with Supabase & Cloudflare</span>
+  </div>
+</footer>
+
+<script type="module" src="home.js"></script>
+</body>
+</html>
