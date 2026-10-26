@@ -22,24 +22,31 @@ const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({
 }[c]));
 
 const fmtDate = d => d
-  ? new Date(d).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' })
+  ? new Date(d).toLocaleDateString(undefined, {
+      year: 'numeric', month: 'short', day: 'numeric'
+    })
   : '';
 
 /* ---------- error view ---------- */
 function showError(title, msg) {
   document.title = `${title} — Wryter`;
-  el.cover.remove();
+  if (el.cover) el.cover.remove();
+  if (el.list) el.list.innerHTML = '';
+  if (el.count) el.count.textContent = '';
   el.info.innerHTML = `
     <h1>${esc(title)}</h1>
     <p class="synopsis">${esc(msg)}</p>
-    <a href="/" class="btn">← Back to stories</a>
+    <a href="./" class="btn">← Back to stories</a>
   `;
 }
 
 /* ---------- load ---------- */
 async function load() {
   if (!slug) {
-    return showError('No story selected', 'Open a story from the homepage to read it.');
+    return showError(
+      'No story selected',
+      'Open a story from the homepage to read it.'
+    );
   }
 
   const { data: story, error: sErr } = await sb
@@ -50,7 +57,10 @@ async function load() {
 
   if (sErr || !story) {
     console.error('[Wryter] story fetch:', sErr);
-    return showError('Story not found', "That story doesn't exist — maybe a typo in the URL?");
+    return showError(
+      'Story not found',
+      `No story with slug "${slug}". Check the URL or return to the homepage.`
+    );
   }
 
   const { data: chapters, error: cErr } = await sb
@@ -69,36 +79,38 @@ async function load() {
 function render(story, chapters) {
   document.title = `${story.title} — Wryter`;
 
-  // cover
+  // Cover
   if (story.cover_url) {
     el.cover.innerHTML =
       `<img src="${esc(story.cover_url)}" alt="${esc(story.title)} cover" />`;
   } else {
     el.cover.innerHTML =
-      `<div class="ph" style="width:100%;height:100%;display:grid;place-items:center;
+      `<div style="width:100%;height:100%;display:grid;place-items:center;
        font-family:var(--font-display);font-size:64px;color:var(--text-muted)">
-       ${esc((story.title || 'W')[0])}</div>`;
+        ${esc((story.title || 'W')[0])}
+      </div>`;
   }
 
-  // meta
+  // Tags + status
   const tags = (story.tags || [])
     .map(t => `<span class="tag">${esc(t)}</span>`)
     .join(' ');
-
   const status = story.status
     ? `<span class="tag amber">${esc(story.status)}</span>`
     : '';
 
   const firstCh = chapters[0];
-  const lastCh = chapters[chapters.length - 1];
+  const lastCh  = chapters[chapters.length - 1];
   const readUrl = n =>
-    `/read.html?slug=${encodeURIComponent(story.slug)}&n=${n}`;
+    `read.html?slug=${encodeURIComponent(story.slug)}&n=${n}`;
 
   const actions = chapters.length
     ? `<div style="display:flex;gap:12px;flex-wrap:wrap">
          <a class="btn" href="${readUrl(firstCh.number)}">Start reading</a>
          ${chapters.length > 1
-           ? `<a class="btn ghost" href="${readUrl(lastCh.number)}">Latest · Ch. ${lastCh.number}</a>`
+           ? `<a class="btn ghost" href="${readUrl(lastCh.number)}">
+                Latest · Ch. ${lastCh.number}
+              </a>`
            : ''}
        </div>`
     : `<p style="color:var(--text-muted)">No chapters published yet.</p>`;
@@ -110,23 +122,22 @@ function render(story, chapters) {
     ${actions}
   `;
 
-  // chapter list
-  el.count.textContent =
-    chapters.length
-      ? `${chapters.length} ${chapters.length === 1 ? 'chapter' : 'chapters'}`
-      : '';
+  // Chapter list
+  el.count.textContent = chapters.length
+    ? `${chapters.length} ${chapters.length === 1 ? 'chapter' : 'chapters'}`
+    : '';
 
-  el.list.innerHTML = chapters.map(c => `
-    <li>
-      <a href="${readUrl(c.number)}">
-        <span class="num">${c.number}</span>
-        <span class="t">${esc(c.title)}</span>
-        <span class="d">${fmtDate(c.published_at)}</span>
-      </a>
-    </li>
-  `).join('');
-
-  if (!chapters.length) {
+  if (chapters.length) {
+    el.list.innerHTML = chapters.map(c => `
+      <li>
+        <a href="${readUrl(c.number)}">
+          <span class="num">${c.number}</span>
+          <span class="t">${esc(c.title)}</span>
+          <span class="d">${fmtDate(c.published_at)}</span>
+        </a>
+      </li>
+    `).join('');
+  } else {
     el.list.innerHTML =
       `<li style="padding:16px 4px;color:var(--text-muted)">No chapters yet.</li>`;
   }
