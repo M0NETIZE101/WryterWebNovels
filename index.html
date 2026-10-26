@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Wryter — Stories by Wryter</title>
   <meta name="description" content="Original fiction and fanfiction by Wryter." />
+  <link rel="icon" href="data:," />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&family=Lora:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -14,9 +15,9 @@
 
 <header class="site-header">
   <div class="wrap">
-    <a href="/" class="wordmark">Wryter<span class="dot">.</span></a>
+    <a href="./" class="wordmark">Wryter<span class="dot">.</span></a>
     <nav class="nav">
-      <a href="/">Stories</a>
+      <a href="./">Stories</a>
       <a href="#about">About</a>
       <button class="icon-btn" id="theme-toggle" aria-label="Toggle theme">☾</button>
     </nav>
@@ -35,11 +36,11 @@
   <div class="wrap">
     <div class="section-head">
       <h2>All stories</h2>
-      <span class="meta" id="story-count"></span>
+      <span class="meta" id="story-count" style="color:var(--text-muted)"></span>
     </div>
     <div class="grid" id="story-grid">
-      <div class="skel cover"></div><div class="skel cover"></div><div class="skel cover"></div>
-      <div class="skel cover"></div>
+      <div class="skel cover"></div><div class="skel cover"></div>
+      <div class="skel cover"></div><div class="skel cover"></div>
     </div>
   </div>
 </section>
@@ -57,7 +58,7 @@
 <footer class="site-footer">
   <div class="wrap">
     <span>© <span id="year"></span> Wryter</span>
-    <span>Built with Supabase & Cloudflare</span>
+    <span>Built with Supabase &amp; Cloudflare</span>
   </div>
 </footer>
 
