@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Reading — Wryter</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&family=Lora:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<div class="reading-bar" id="progress"></div>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="/" class="wordmark">Wryter<span class="dot">.</span></a>
+    <nav class="nav">
+      <a href="/" id="story-link">← All stories</a>
+      <button class="icon-btn" id="theme-toggle" aria-label="Toggle theme">☾</button>
+    </nav>
+  </div>
+</header>
+
+<main class="reader">
+  <div class="chapter-eyebrow" id="eyebrow">Loading…</div>
+  <h1 id="chapter-title">&nbsp;</h1>
+  <div class="byline" id="byline"></div>
+  <article class="reader-content" id="content"></article>
+  <nav class="chapter-nav" id="chapter-nav"></nav>
+</main>
+
+<div class="settings">
+  <div class="settings-panel" id="settings-panel">
+    <div class="row">
+      <label>Text size</label>
+      <div class="seg" id="size-seg">
+        <button data-size="17">A</button>
+        <button data-size="19">A</button>
+        <button data-size="21">A</button>
+        <button data-size="23">A</button>
+      </div>
+    </div>
+    <div class="row">
+      <label>Typeface</label>
+      <div class="seg" id="font-seg">
+        <button data-font="serif">Serif</button>
+        <button data-font="sans">Sans</button>
+      </div>
+    </div>
+  </div>
+  <button class="icon-btn" id="settings-toggle" aria-label="Reading settings">Aa</button>
+</div>
+
+<script type="module" src="read.js"></script>
+</body>
+</html>
